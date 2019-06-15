@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"net/http"
-	"html/template"
 )
 
 
@@ -18,5 +17,3 @@ func main() {
 	http.HandleFunc("/", hello)
 	http.ListenAndServe(":"+port,nil))
 }
-
-
