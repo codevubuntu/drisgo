@@ -9,17 +9,13 @@ import (
 )
 
 
-func accueil(w http.ResponseWriter, r *http.Request){
-	t, err := template.ParseFiles("index.html")
-	if err != nil {
-        fmt.Println(err)
-    	} 
-	t.Execute(w, nil)
+func hello(w http.ResponseWriter, r *http.Request) {
+  fmt.Fprintln(w, "Hello World")
 }
 
 func main() {
 	port := os.Getenv("PORT")
-	http.HandleFunc("/", accueil)
+	http.HandleFunc("/", hello)
 	http.ListenAndServe(":"+port,nil))
 }
 
