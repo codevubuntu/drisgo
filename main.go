@@ -31,7 +31,7 @@ func main() {
 	checkErr(err)
 	defer db.Close()
 
-	rows, err := db.Query("SELECT * FROM userinfo")
+	/*rows, err := db.Query("SELECT * FROM userinfo")
 	checkErr(err)
 
 	for rows.Next() {
@@ -43,7 +43,7 @@ func main() {
 		checkErr(err)
 		fmt.Println("uid | username | departement | created")
 		fmt.Printf("%3v | %8v | %6v\n", uid, username, department, created)
-	}
+	} */
 	http.HandleFunc("/", accueil)
 	log.Fatal(http.ListenAndServe(":"+port,nil))
 }
