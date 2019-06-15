@@ -4,6 +4,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"os"
 	"time"
 	"net/http"
 	"html/template"
@@ -23,6 +24,8 @@ func accueil(w http.ResponseWriter, r *http.Request){
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
 	db, err := sql.Open("postgres", dbinfo)
 	checkErr(err)
@@ -42,7 +45,7 @@ func main() {
 		fmt.Printf("%3v | %8v | %6v\n", uid, username, department, created)
 	}
 	http.HandleFunc("/", accueil)
-	log.Fatal(http.ListenAndServe(:8080,nil))
+	log.Fatal(http.ListenAndServe(":"+port,nil))
 }
 
 func checkErr(err error) {
