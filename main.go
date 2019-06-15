@@ -5,8 +5,10 @@ import (
 	"database/sql"
 	"fmt"
 	"time"
-
+	"net/http"
+	"html/template"
 	_ "github.com/lib/pq"
+	"log"
 )
 
 const (
@@ -14,6 +16,11 @@ const (
 	DB_PASSWORD = "toto"
 	DB_NAME     = "drib"
 )
+
+func accueil(w http.ResponseWriter, r *http.Request){
+	t, _ := template.ParseFiles("index.html")
+	t.Execute(w, nil)
+}
 
 func main() {
 	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
@@ -34,7 +41,8 @@ func main() {
 		fmt.Println("uid | username | departement | created")
 		fmt.Printf("%3v | %8v | %6v\n", uid, username, department, created)
 	}
-
+	http.HandleFunc("/", accueil)
+	log.Fatal(http.ListenAndServe(:8080,nil))
 }
 
 func checkErr(err error) {
