@@ -19,19 +19,19 @@ const (
 )
 
 func accueil(w http.ResponseWriter, r *http.Request){
-	t, _ := template.ParseFiles("index.html")
+	t, err:= template.ParseFiles("index.html")
 	t.Execute(w, nil)
 }
 
 func main() {
 	port := os.Getenv("PORT")
 	
-	dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
+	/*dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable", DB_USER, DB_PASSWORD, DB_NAME)
 	db, err := sql.Open("postgres", dbinfo)
 	checkErr(err)
 	defer db.Close()
 
-	/*rows, err := db.Query("SELECT * FROM userinfo")
+	rows, err := db.Query("SELECT * FROM userinfo")
 	checkErr(err)
 
 	for rows.Next() {
