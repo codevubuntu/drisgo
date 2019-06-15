@@ -10,14 +10,14 @@ import (
 
 
 func accueil(w http.ResponseWriter, r *http.Request){
-	t, err:= template.ParseFiles("index.html")
+	t, _ := template.ParseFiles("index.html")
 	t.Execute(w, nil)
 }
 
 func main() {
 	port := os.Getenv("PORT")
 	http.HandleFunc("/", accueil)
-	log.Fatal(http.ListenAndServe(":"+port,nil))
+	http.ListenAndServe(":"+port,nil))
 }
 
 
