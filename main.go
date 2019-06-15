@@ -10,7 +10,10 @@ import (
 
 
 func accueil(w http.ResponseWriter, r *http.Request){
-	t, _ := template.ParseFiles("index.html")
+	t, err := template.ParseFiles("index.html")
+	if err != nil {
+        fmt.Println(err)
+    	} 
 	t.Execute(w, nil)
 }
 
