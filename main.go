@@ -9,7 +9,10 @@ import (
 
 
 func hello(w http.ResponseWriter, r *http.Request) {
-  t, _ := template.ParseFiles("index.html")
+  t, err := template.ParseFiles("index.html")
+  if err != nil {
+    panic(err)
+  }
   t.Execute(w, nil)
 }
 
