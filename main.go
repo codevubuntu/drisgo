@@ -22,5 +22,5 @@ func hello(w http.ResponseWriter, r *http.Request) {
 func main() {
   port := os.Getenv("PORT")
   http.HandleFunc("/", hello)
-  log.Fatal(http.ListenAndServe(":"+port, nil))
+  http.ListenAndServe(":"+port, nil)
 }
