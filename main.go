@@ -9,7 +9,7 @@ import (
 
 
 func hello(w http.ResponseWriter, r *http.Request) {
-  t, err := template.ParseFiles("./index.html")
+  t, err := template.ParseFiles("index.html")
   if err != nil {
     panic(err)
   }
@@ -19,5 +19,5 @@ func hello(w http.ResponseWriter, r *http.Request) {
 func main() {
   port := os.Getenv("PORT")
   http.HandleFunc("/", hello)
-  log.Fatal(http.ListenAndServe(":"+port, nil))
+  log.Fatal(http.ListenAndServe(port, nil))
 }
