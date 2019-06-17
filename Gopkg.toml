@@ -34,6 +34,6 @@
   unused-packages = true
   
 [metadata.heroku]
-  root-package = "./bin/drisgo"
+  root-package = "drisgo"
   go-version = "go1.10.4"
   install = [ "./..." ]
