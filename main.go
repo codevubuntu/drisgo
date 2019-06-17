@@ -13,7 +13,7 @@ type Page struct{
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
-  data := Page{ Title: "Ma page", Message: "Hello world" }
+  data := Page{Title: "Ma page", Message: "Hello world"}
   t, err := template.ParseFiles("index.html")
   if err != nil {
     panic(err)
