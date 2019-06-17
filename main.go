@@ -13,11 +13,14 @@ func hello(w http.ResponseWriter, r *http.Request) {
   if err != nil {
     panic(err)
   }
-  t.Execute(w, nil)
+  err = t.Execute(w, nil)
+  if err != nil {
+    panic(err)
+  }
 }
 
 func main() {
   port := os.Getenv("PORT")
   http.HandleFunc("/", hello)
-  log.Fatal(http.ListenAndServe(port, nil))
+  log.Fatal(http.ListenAndServe(":"+port, nil))
 }
