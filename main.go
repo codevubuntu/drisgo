@@ -1,11 +1,10 @@
 package main
 
 import (
-  //"log"
+  "os"
   "net/http"
   "html/template"
-  "os"
-)
+ )
 
 type Page struct{
  Title string ;
