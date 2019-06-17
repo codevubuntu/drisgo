@@ -7,13 +7,18 @@ import (
   "os"
 )
 
+type Page struct{
+ Title string ;
+ Mesage string ;
+}
 
 func hello(w http.ResponseWriter, r *http.Request) {
+  data := Page{Title : "Ma page", Message : "Hello world"}
   t, err := template.ParseFiles("index.html")
   if err != nil {
     panic(err)
   }
-  err = t.Execute(w, nil)
+  err = t.Execute(w, data)
   if err != nil {
     panic(err)
   }
