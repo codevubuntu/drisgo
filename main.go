@@ -9,7 +9,7 @@ import (
 
 type Page struct{
  Title string ;
- Mesage string ;
+ Message string ;
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
