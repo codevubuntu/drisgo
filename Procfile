@@ -1,1 +1,1 @@
-web: drisgo 
+web: bin/drisgo
