@@ -59,7 +59,7 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 	for rows.Next() {
 		err = rows.Scan(&id, &name, &country)
 		checkErr(err)
-		liste = append(liste, user{Id: id, Name: name, Country: country})
+		liste = append(liste, userinfo{Id: id, Name: name, Country: country})
 	}
 	t, err := template.ParseFiles("index.html")
 	checkErr(err)
@@ -78,7 +78,7 @@ func ajouter(w http.ResponseWriter, r *http.Request) {
 	nom := r.Form["nom"][0]
 	pays := r.Form["pays"][0]
 
-	sqlStatement := `INSERT INTO users(name, country) VALUES($1,$2)`
+	sqlStatement := `INSERT INTO userinfo(name, country) VALUES($1,$2)`
 	db.QueryRow(sqlStatement, nom, pays)
 	checkErr(err)
   
@@ -110,7 +110,7 @@ func executerModif(w http.ResponseWriter, r *http.Request) {
 	nom := r.Form["nom"][0]
 	pays := r.Form["pays"][0]
 
-	stmt, err := db.Prepare("UPDATE users SET name=$1, country=$2 WHERE id=$3 ;")
+	stmt, err := db.Prepare("UPDATE userinfo SET name=$1, country=$2 WHERE id=$3 ;")
 	checkErr(err)
 
 	stmt.Exec(nom, pays, id)
@@ -126,7 +126,7 @@ func supprimer(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	IdForm := r.Form["idForm"][0]
 
-	stmt, err := db.Prepare("DELETE FROM users WHERE id=$1 ;")
+	stmt, err := db.Prepare("DELETE FROM userinfo WHERE id=$1 ;")
 	checkErr(err)
 
 	stmt.Exec(IdForm)
