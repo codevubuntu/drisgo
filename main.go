@@ -48,7 +48,7 @@ func connexion() *sql.DB {
 func accueil(w http.ResponseWriter, r *http.Request) {
 	db = connexion()
 
-	rows, err := db.Query("SELECT * FROM users ;")
+	rows, err := db.Query("SELECT * FROM userinfo ;")
 	checkErr(err)
 
 	var id int
