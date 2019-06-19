@@ -59,7 +59,7 @@ func accueil(w http.ResponseWriter, r *http.Request) {
 	for rows.Next() {
 		err = rows.Scan(&id, &name, &country)
 		checkErr(err)
-		liste = append(liste, userinfo{Id: id, Name: name, Country: country})
+		liste = append(liste, user{Id: id, Name: name, Country: country})
 	}
 	t, err := template.ParseFiles("index.html")
 	checkErr(err)
