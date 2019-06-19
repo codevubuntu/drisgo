@@ -33,7 +33,7 @@ type users struct {
 
 func checkErr(err error) {
 	if err != nil {
-	panic(err)
+	log.Fatalf("%s", err.Error())
 	}
 }
 
@@ -48,7 +48,7 @@ func connexion() *sql.DB {
 func accueil(w http.ResponseWriter, r *http.Request) {
 	db = connexion()
 
-	rows, err := db.Query("SELECT * FROM users")
+	rows, err := db.Query("SELECT * FROM users ;")
 	checkErr(err)
 
 	var id int
